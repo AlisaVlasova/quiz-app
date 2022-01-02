@@ -4,7 +4,6 @@ export function Settings() {
       <h2 class="secondary-title">
         Settings
       </h2>
-      
     </div>
   );
 }
