@@ -6,7 +6,7 @@ import {
   SET_QUESTIONS,
   SET_CURRENT_INDEX,
   SET_SCORE,
-} from "./actionTypes";
+} from './actionTypes';
 
 export const setCategory = (value) => ({
   type: SET_CATEGORY,
@@ -18,13 +18,18 @@ export const setDifficulty = (value) => ({
   value,
 });
 
-export const cangeType = (value) => ({
+export const setType = (value) => ({
   type: SET_TYPE,
   value,
 });
 
 export const setAmount = (value) => ({
   type: SET_AMOUNT,
+  value,
+});
+
+export const setQuestions = (value) => ({
+  type: SET_QUESTIONS,
   value,
 });
 

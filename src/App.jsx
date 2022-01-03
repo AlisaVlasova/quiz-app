@@ -2,16 +2,16 @@ import React from 'react';
 import {
   BrowserRouter as Router,
   Routes,
-  Route
-} from "react-router-dom";
+  Route,
+} from 'react-router-dom';
 
-import { Settings } from './pages/Settings/index';
-import { Questions } from './pages/Questions/index';
-import { Result } from './pages/Result/index';
+import Settings from './pages/Settings/index';
+import Questions from './pages/Questions/index';
+import Result from './pages/Result/index';
 
 import './App.css';
 
-export function App() {
+function App() {
   return (
     <div className="App">
       <Router>
@@ -24,3 +24,5 @@ export function App() {
     </div>
   );
 }
+
+export default App;

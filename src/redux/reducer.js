@@ -6,18 +6,19 @@ import {
   SET_QUESTIONS,
   SET_CURRENT_INDEX,
   SET_SCORE,
-} from "./actionTypes";
+} from './actionTypes';
 
 const initialState = {
   questionCategory: null,
   questionDifficulty: null,
   questionType: null,
-  amountOfQuestion: 10,
+  amountOfQuestions: 10,
   questions: null,
   currentIndex: 0,
   score: 0,
 };
 
+// eslint-disable-next-line default-param-last
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_CATEGORY:
@@ -38,7 +39,7 @@ const reducer = (state = initialState, action) => {
     case SET_AMOUNT:
       return {
         ...state,
-        amountOfQuestion: action.value,
+        amountOfQuestions: action.value,
       };
     case SET_QUESTIONS:
       return {
