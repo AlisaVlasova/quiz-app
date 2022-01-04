@@ -30,6 +30,13 @@ function Questions() {
   const currentIndex = useSelector((state) => state.currentIndex);
   const correct = useSelector((state) => state.correct);
 
+  const decode = function (html) {
+    const txt = document.createElement('textarea');
+
+    txt.innerHTML = html;
+
+    return txt.value;
+  };
   const getRandomInt = (max) => Math.floor(Math.random() * Math.floor(max));
   const setAnswers = (data, index) => {
     const answers = [...data[index].incorrect_answers];
@@ -46,10 +53,15 @@ function Questions() {
 
     try {
       const questionsData = await getQuestions(data);
-      console.log(questionsData.results);
+      const decodedQuestionsData = questionsData.results.map((q) => ({
+        ...q,
+        question: decode(q.question),
+        correct_answer: decode(q.correct_answer),
+        incorrect_answers: q.incorrect_answers.map((a) => decode(a)),
+      }));
 
-      dispatch(setQuestions(questionsData.results));
-      setAnswers(questionsData.results, currentIndex);
+      dispatch(setQuestions(decodedQuestionsData));
+      setAnswers(decodedQuestionsData, currentIndex);
     } catch (err) {
       setError(err);
       console.log(err);
