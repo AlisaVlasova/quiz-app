@@ -8,7 +8,7 @@ import {
   setType,
 } from '../../redux/actions';
 
-function Select({ label, options }) {
+function Select({ label, options, defaultValue }) {
   const dispatch = useDispatch();
 
   const handleChange = (event) => {
@@ -28,8 +28,12 @@ function Select({ label, options }) {
 
   return (
     <div className="select">
-      <select label={label} onChange={handleChange}>
-        {options && options.map((item) => (
+      <select
+        label={label}
+        onChange={handleChange}
+        defaultValue={defaultValue}
+      >
+        {options.length && options.map((item) => (
           <option value={item.id} key={item.id}>
             {item.name}
           </option>
@@ -42,6 +46,7 @@ function Select({ label, options }) {
 Select.propTypes = {
   label: PropTypes.string.isRequired,
   options: PropTypes.arrayOf(PropTypes.object).isRequired,
+  defaultValue: PropTypes.string.isRequired,
 };
 
 export default Select;

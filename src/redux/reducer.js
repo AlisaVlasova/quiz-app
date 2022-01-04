@@ -5,17 +5,20 @@ import {
   SET_TYPE,
   SET_QUESTIONS,
   SET_CURRENT_INDEX,
-  SET_SCORE,
+  SET_CORRECT,
+  SET_INCORRECT,
+  RESTART,
 } from './actionTypes';
 
 const initialState = {
-  questionCategory: null,
-  questionDifficulty: null,
-  questionType: null,
-  amountOfQuestions: 10,
+  questionCategory: '0',
+  questionDifficulty: 'easy',
+  questionType: 'multiple',
+  amountOfQuestions: '10',
   questions: null,
   currentIndex: 0,
-  score: 0,
+  correct: [],
+  incorrect: [],
 };
 
 // eslint-disable-next-line default-param-last
@@ -51,10 +54,19 @@ const reducer = (state = initialState, action) => {
         ...state,
         currentIndex: action.value,
       };
-    case SET_SCORE:
+    case SET_CORRECT:
       return {
         ...state,
-        score: action.value,
+        correct: action.value,
+      };
+    case SET_INCORRECT:
+      return {
+        ...state,
+        incorrect: action.value,
+      };
+    case RESTART:
+      return {
+        ...initialState,
       };
     default:
       return state;

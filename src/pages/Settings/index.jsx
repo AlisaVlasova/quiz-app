@@ -4,12 +4,13 @@ import { useSelector } from 'react-redux';
 
 import Select from '../../components/Select';
 import Input from '../../components/Input';
-import getCategory from '../../api';
+
+import { getCategory } from '../../api';
 
 function Settings() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [categoryOptions, setCategoryOptions] = useState(null);
+  const [categoryOptions, setCategoryOptions] = useState([]);
 
   const navigate = useNavigate();
 
@@ -33,11 +34,9 @@ function Settings() {
     setLoading(true);
 
     try {
-      getCategory()
-        .then((categories) => {
-          console.log(categories);
-          setCategoryOptions(categories.trivia_categories);
-        });
+      const categories = await getCategory();
+
+      setCategoryOptions(categories.trivia_categories);
     } catch (err) {
       setError(err);
     } finally {
@@ -55,13 +54,13 @@ function Settings() {
 
   if (loading) {
     return (
-      <p>Loading...</p>
+      <p className="loader">Loading...</p>
     );
   }
 
   if (error) {
     return (
-      <p>
+      <p className="error">
         Something Went Wrong!
         <br />
         Please, try again later
@@ -70,26 +69,42 @@ function Settings() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="settings">
       <p className="settings__label">
         Select category:
       </p>
-      <Select options={categoryOptions} label="Category" />
+      <Select
+        options={categoryOptions}
+        label="Category"
+        defaultValue={category}
+      />
+
       <p className="settings__label">
         Select difficulty:
       </p>
-      <Select options={difficultyOptions} label="Difficulty" />
+      <Select
+        options={difficultyOptions}
+        label="Difficulty"
+        defaultValue={difficulty}
+      />
+
       <p className="settings__label">
         Select question type:
       </p>
-      <Select options={typeOptions} label="Type" />
+      <Select
+        options={typeOptions}
+        label="Type"
+        defaultValue={type}
+      />
+
       <p className="settings__label">
         Amount of questions:
       </p>
-      <Input />
+      <Input defaultValue={amount} />
+
       <button
+        className="settings__btn"
         type="submit"
-        disabled={!category || !difficulty || !type || !amount}
       >
         Go!
       </button>

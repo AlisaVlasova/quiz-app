@@ -5,7 +5,9 @@ import {
   SET_TYPE,
   SET_QUESTIONS,
   SET_CURRENT_INDEX,
-  SET_SCORE,
+  SET_CORRECT,
+  SET_INCORRECT,
+  RESTART,
 } from './actionTypes';
 
 export const setCategory = (value) => ({
@@ -38,7 +40,16 @@ export const setCurrentIndex = (value) => ({
   value,
 });
 
-export const setScore = (value) => ({
-  type: SET_SCORE,
+export const setCorrect = (value) => ({
+  type: SET_CORRECT,
   value,
+});
+
+export const setIncorrect = (value) => ({
+  type: SET_INCORRECT,
+  value,
+});
+
+export const restart = () => ({
+  type: RESTART,
 });
