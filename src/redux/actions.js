@@ -6,7 +6,6 @@ import {
   SET_QUESTIONS,
   SET_CURRENT_INDEX,
   SET_CORRECT,
-  SET_INCORRECT,
   RESTART,
 } from './actionTypes';
 
@@ -42,11 +41,6 @@ export const setCurrentIndex = (value) => ({
 
 export const setCorrect = (value) => ({
   type: SET_CORRECT,
-  value,
-});
-
-export const setIncorrect = (value) => ({
-  type: SET_INCORRECT,
   value,
 });
 

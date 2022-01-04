@@ -5,5 +5,4 @@ export const SET_AMOUNT = 'SET_AMOUNT';
 export const SET_QUESTIONS = 'SET_QUESTIONS';
 export const SET_CURRENT_INDEX = 'SET_CURRENT_INDEX';
 export const SET_CORRECT = 'SET_CORRECT';
-export const SET_INCORRECT = 'SET_INCORRECT';
 export const RESTART = 'RESTART';

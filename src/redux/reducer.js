@@ -6,7 +6,6 @@ import {
   SET_QUESTIONS,
   SET_CURRENT_INDEX,
   SET_CORRECT,
-  SET_INCORRECT,
   RESTART,
 } from './actionTypes';
 
@@ -18,7 +17,6 @@ const initialState = {
   questions: null,
   currentIndex: 0,
   correct: [],
-  incorrect: [],
 };
 
 // eslint-disable-next-line default-param-last
@@ -58,11 +56,6 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         correct: action.value,
-      };
-    case SET_INCORRECT:
-      return {
-        ...state,
-        incorrect: action.value,
       };
     case RESTART:
       return {

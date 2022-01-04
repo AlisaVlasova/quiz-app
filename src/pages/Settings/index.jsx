@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import Select from '../../components/Select';
 import Input from '../../components/Input';
 
+import {
+  setQuestions,
+  setCurrentIndex,
+  setCorrect,
+} from '../../redux/actions';
 import { getCategory } from '../../api';
 
 function Settings() {
@@ -13,6 +18,7 @@ function Settings() {
   const [categoryOptions, setCategoryOptions] = useState([]);
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const category = useSelector((state) => state.questionCategory);
   const difficulty = useSelector((state) => state.questionDifficulty);
@@ -43,8 +49,15 @@ function Settings() {
       setLoading(false);
     }
   };
+  const clearQuestions = () => {
+    dispatch(setQuestions(null));
+    dispatch(setCurrentIndex(0));
+    dispatch(setCorrect([]));
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    clearQuestions();
     navigate('/questions');
   };
 

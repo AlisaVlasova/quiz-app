@@ -73,6 +73,7 @@ function Questions() {
   const handleAnswer = (event, id) => {
     const answer = event.target.value;
     const answeredQuestion = { ...questions[id], answer };
+
     dispatch(setQuestions(
       [...questions]
         .map((item) => {
@@ -94,9 +95,13 @@ function Questions() {
   };
 
   useEffect(() => {
-    setQuestionsData({
-      amount, category, difficulty, type,
-    });
+    if (!questions) {
+      setQuestionsData({
+        amount, category, difficulty, type,
+      });
+    } else {
+      setAnswers(questions, currentIndex);
+    }
   }, []);
 
   if (loading) {
@@ -117,59 +122,64 @@ function Questions() {
 
   return (
     <div className="questions">
-      <div className="questions__progress">
-        <div
-          className="question__progress-bar"
-          style={{ width: `${((currentIndex + 1) / amount) * 100}%` }}
-        />
-      </div>
-      <Swiper
-        ref={swiper}
-        slidesPerView={1}
-        onSlideChange={handleSwipe}
-        allowSlideNext={questions && questions[currentIndex].answer}
-      >
-        {questions && questions.map((question) => (
-          <SwiperSlide key={question.question}>
-            <p className="questions__category">
-              Category:
-              {' '}
-              {question.category}
-            </p>
-            <p className="questions__text">
-              {question.question}
-            </p>
-          </SwiperSlide>
-        ))}
-      </Swiper>
+      {questions && (
+        <>
+          <div className="questions__progress">
+            <div
+              className="question__progress-bar"
+              style={{ width: `${((currentIndex + 1) / amount) * 100}%` }}
+            />
+          </div>
+          <Swiper
+            ref={swiper}
+            slidesPerView={1}
+            onSlideChange={handleSwipe}
+            allowSlideNext={questions[currentIndex].answer}
+            initialSlide={currentIndex}
+          >
+            {questions.map((question) => (
+              <SwiperSlide key={question.question}>
+                <p className="questions__category">
+                  Category:
+                  {' '}
+                  {question.category}
+                </p>
+                <p className="questions__text">
+                  {question.question}
+                </p>
+              </SwiperSlide>
+            ))}
+          </Swiper>
 
-      {options && options.map((answer) => (
-        <label htmlFor={answer} key={answer}>
-          {answer}
-          <input
-            type="radio"
-            name="answer"
-            id={answer}
-            value={answer}
-            onChange={(event) => handleAnswer(event, currentIndex)}
-            className={`
-              ${questions[currentIndex].correct_answer.includes(answer)
-              ? 'questions__answer--correct'
-              : 'questions__answer--incorrect'}
-              question__answer
-            `}
-            checked={
-              questions[currentIndex].answer === answer
-            }
-          />
-        </label>
-      ))}
+          {options && options.map((answer) => (
+            <label htmlFor={answer} key={answer}>
+              {answer}
+              <input
+                type="radio"
+                name="answer"
+                id={answer}
+                value={answer}
+                onChange={(event) => handleAnswer(event, currentIndex)}
+                className={`
+                  ${questions[currentIndex].correct_answer.includes(answer)
+                  ? 'questions__answer--correct'
+                  : 'questions__answer--incorrect'}
+                  question__answer
+                `}
+                checked={
+                  questions[currentIndex].answer === answer
+                }
+              />
+            </label>
+          ))}
 
-      <p className="questions__score">
-        Score
-        {' '}
-        {correct.length}
-      </p>
+          <p className="questions__score">
+            Score
+            {' '}
+            {correct.length}
+          </p>
+        </>
+      )}
     </div>
   );
 }
