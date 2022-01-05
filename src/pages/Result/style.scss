@@ -1,0 +1,21 @@
+@import '../../assets/scss/vars';
+@import '../../assets/scss/extends';
+@import '../../assets/scss/mixins';
+
+.result {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  
+  width: 100%;
+  height: calc(100vh - $gap_l * 2);
+  max-width: 600px;
+
+  text-align: center;
+
+  &__btn {
+    @media screen and (max-width: 420px) {
+      width: 100%;
+    }
+  }
+}

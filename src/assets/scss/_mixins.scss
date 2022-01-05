@@ -1,0 +1,15 @@
+@mixin hover($_property, $_toValue) {
+  transition: #{$_property} 0.3s;
+  &:hover {
+    #{$_property}: $_toValue;
+  }
+}
+
+@mixin glow($_color) {
+  box-shadow: 0 0 .2rem #fff,
+              0 0 .2rem #fff,
+              0 0 2rem #{$_color},
+              0 0 0.8rem #{$_color},
+              0 0 2.8rem #{$_color},
+              inset 0 0 1.3rem #{$_color} !important;
+}

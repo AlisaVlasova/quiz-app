@@ -1,0 +1,141 @@
+@import './assets/scss/vars';
+@import './assets/scss/extends';
+@import './assets/scss/mixins';
+
+@font-face {
+  font-family: 'Neon';
+  src: url(./assets/fonts/hellodenverdisplayregular_v1.6.ttf);
+  src: url(./assets/fonts/hellodenverdisplayregular_v1.6.woff);
+}
+
+@font-face {
+  font-family: 'Stolzl';
+  src: url(./assets/fonts/Stolzl-Bold.ttf);
+  src: url(./assets/fonts/Stolzl-Bold.woff);
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: 'Stolzl';
+  src: url(./assets/fonts/Stolzl-Regular.ttf);
+  src: url(./assets/fonts/Stolzl-Regular.woff);
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Stolzl';
+  src: url(./assets/fonts/Stolzl-Thin.ttf);
+  src: url(./assets/fonts/Stolzl-Thin.woff);
+  font-weight: 300;
+}
+
+.App {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  min-height: 100vh;
+
+  padding: $gap_l $gap_m;
+
+  background-image: url(./assets/img/wall.jpeg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  color: $text_color;
+
+  overflow-x: hidden;
+
+  .primary-title {
+    @extend %h1;
+
+    animation: flicker 1.5s alternate;
+  }
+
+  .secondary-title {
+    @extend %h2;
+  }
+
+  .third-title {
+    @extend %h3;
+  }
+
+  .text {
+    @extend %txt;
+  }
+
+  .border-block {
+    @extend %neon_border;
+
+    width: 100%;
+    max-width: 600px;
+
+    padding: $gap_m;
+
+    border-radius: 1rem;
+
+    @media screen and (min-width: 768px) {
+      padding: $gap_l;
+    }
+  }
+
+  .btn {
+    @extend %neon_border;
+    @extend %txt;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 50px;
+    max-width: 100%;
+
+    margin: $gap_m auto 0;
+    padding: $gap_s $gap_m;
+
+    border-radius: 1rem;
+
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    @include hover(color, $accent_color);
+  }
+
+  .loader,
+  .error {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+
+    font-size: 60px;
+
+    transform: translate(-50%, -50%);
+
+    animation: flicker 1.5s infinite alternate;
+  }
+
+  @keyframes flicker {
+    
+    0%, 18%, 22%, 25%, 53%, 57%, 100% {
+  
+        text-shadow:
+        0 0 4px #fff,
+        0 0 11px #fff,
+        0 0 19px #fff,
+        0 0 40px $accent_color,
+        0 0 80px $accent_color,
+        0 0 90px $accent_color,
+        0 0 100px $accent_color,
+        0 0 150px $accent_color;
+    
+    }
+    
+    20%, 24%, 55% {
+        text-shadow: none;
+    } 
+  } 
+}

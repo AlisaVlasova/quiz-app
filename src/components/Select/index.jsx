@@ -2,6 +2,8 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 
+import './style.scss';
+
 import {
   setCategory,
   setDifficulty,
@@ -29,6 +31,7 @@ function Select({ label, options, defaultValue }) {
   return (
     <div className="select">
       <select
+        className="select__field"
         label={label}
         onChange={handleChange}
         defaultValue={defaultValue}

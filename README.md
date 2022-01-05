@@ -1,4 +1,52 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
+# Quiz
+
+## Demo
+
+
+## Tech Stack
+
+- React + Hooks
+- Redux
+- React Router
+- Sass
+- Swiper
+
+## What Have I Done
+
+Hi there!
+
+Opening the Quiz we see a form with settings. They are optional, you can use default:
+![alt text](https://github.com/AlisaVlasova/quiz-app/blob/master/public/readme/settings.png)
+
+After you press "START" you get to /questions page, where you can see:
+![alt text](https://github.com/AlisaVlasova/quiz-app/blob/master/public/readme/question-desk.png)
+
+  - arrow btn which brings you back to /home page or to previous question
+    (selected data at home page and selected answer on previous question are saved)
+  - progressbar
+  - score counter
+  - slider with questions and category
+  - answers
+    (after clicking the right one glows green and red if the answer is wrong)
+![alt text](https://github.com/AlisaVlasova/quiz-app/blob/master/public/readme/question-desk-selected.png)
+
+After answering the last question you get to /result page where you can see:
+![alt text](https://github.com/AlisaVlasova/quiz-app/blob/master/public/readme/result.png)
+
+  - score
+  - result button
+
+Also there are:
+  - flicking loader on api requests
+  - flicking error banner if something goes wrong
+  - swipable questions
+  - saving state on reload in SessionStorage
+  - responsive for mobile
+![alt text](https://github.com/AlisaVlasova/quiz-app/blob/master/public/readme/question-mob.png)
+
+## Problems
+
+In some cases api gives an empty array, so if you see an error message just go back to home page ang change some settings)
 
 ## Available Scripts
 
@@ -11,11 +59,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
 ### `npm run build`
 

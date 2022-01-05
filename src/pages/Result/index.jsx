@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { restart } from '../../redux/actions';
 
+import './style.scss';
+
 function Result() {
   const correct = useSelector((state) => state.correct);
   const amount = useSelector((state) => state.amountOfQuestions);
@@ -16,10 +18,10 @@ function Result() {
 
   return (
     <div className="result">
-      <p className="result__title">
-        {correct.length < Math.round(amount / 2) ? "Well, that's fine, but you can do better!" : 'Great result!'}
+      <p className="result__title secondary-title">
+        {correct.length < Math.round(amount / 2) ? 'You can do better!' : 'Great result!'}
       </p>
-      <p className="result__score">
+      <p className="result__score primary-title">
         {correct.length}
         {' '}
         /
@@ -29,6 +31,7 @@ function Result() {
 
       <button
         type="button"
+        className="btn result__btn"
         onClick={handleRestart}
       >
         Try again

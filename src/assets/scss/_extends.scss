@@ -1,0 +1,64 @@
+@import './vars';
+@import './mixins';
+
+%h1 {
+  text-align: center;
+
+  font-family: $font_special;
+  font-size: 100px;
+
+  text-transform: uppercase;
+  text-shadow:
+  0 0 .2rem #fff,
+        0 0 .2rem #fff,
+        0 0 2rem #f09,
+        0 0 0.8rem #f09,
+        0 0 2.8rem #f09;
+
+  @media screen and (min-width: 768px) {
+    font-size: 120px;
+  }
+}
+
+%h2 {
+  font-family: $font_regular;
+  font-size: 30px;
+  font-weight: 700;
+
+  text-transform: uppercase;
+
+  @media screen and (min-width: 768px) {
+    font-size: 70px;
+  }
+}
+
+%h3 {
+  font-family: $font_regular;
+  font-size: 21px;
+  font-weight: 400;
+
+  @media screen and (min-width: 768px) {
+    font-size: 36px;
+  }
+}
+
+%txt {
+  font-family: $font_regular;
+  font-size: 14px;
+  font-weight: 300;
+
+  @media screen and (min-width: 768px) {
+    font-size: 21px;
+  }
+}
+
+%neon_border {
+  border: 0.2rem solid #fff;
+  
+  box-shadow: 0 0 .2rem #fff,
+  0 0 .2rem #fff,
+  0 0 2rem $accent_color,
+  0 0 0.8rem $accent_color,
+  0 0 2.8rem $accent_color,
+  inset 0 0 1.3rem $accent_color;
+}

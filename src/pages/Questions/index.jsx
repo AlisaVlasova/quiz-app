@@ -12,6 +12,7 @@ import {
 import { getQuestions } from '../../api';
 
 import 'swiper/css';
+import './style.scss';
 
 function Questions() {
   const [loading, setLoading] = useState(false);
@@ -30,7 +31,7 @@ function Questions() {
   const currentIndex = useSelector((state) => state.currentIndex);
   const correct = useSelector((state) => state.correct);
 
-  const decode = function (html) {
+  const decode = (html) => {
     const txt = document.createElement('textarea');
 
     txt.innerHTML = html;
@@ -38,6 +39,23 @@ function Questions() {
     return txt.value;
   };
   const getRandomInt = (max) => Math.floor(Math.random() * Math.floor(max));
+  const getAnswerClass = (answer, id) => {
+    let className = 'questions__answer btn';
+
+    if (
+      questions[id].answer === answer
+      && questions[id].correct_answer.includes(answer)
+    ) {
+      className += ' questions__answer--correct btn';
+    } else if (
+      questions[id].answer === answer
+      && !questions[id].correct_answer.includes(answer)
+    ) {
+      className += ' questions__answer--incorrect btn';
+    }
+
+    return className;
+  };
   const setAnswers = (data, index) => {
     const answers = [...data[index].incorrect_answers];
 
@@ -77,6 +95,13 @@ function Questions() {
         navigate('/result');
       }
     }, 1000);
+  };
+  const swipeBack = () => {
+    if (currentIndex !== 0) {
+      swiper.current.swiper.slidePrev();
+    } else {
+      navigate('/');
+    }
   };
   const handleSwipe = (event) => {
     dispatch(setCurrentIndex(event.activeIndex));
@@ -118,78 +143,88 @@ function Questions() {
 
   if (loading) {
     return (
-      <p className="loader">Loading...</p>
+      <p className="loader primary-title">???</p>
     );
   }
 
   if (error) {
     return (
-      <p className="error">
-        Something Went Wrong!
-        <br />
-        Please, try again later
+      <p className="error primary-title">
+        Something Wrong!
       </p>
     );
   }
 
   return (
     <div className="questions">
-      {questions && (
+      {(questions && options) && (
         <>
-          <div className="questions__progress">
-            <div
-              className="question__progress-bar"
-              style={{ width: `${((currentIndex + 1) / amount) * 100}%` }}
-            />
+          <div className="questions__score">
+            <button
+              className="questions__arrow"
+              type="button"
+              onClick={swipeBack}
+            >
+              &lt;
+            </button>
+            <div className="questions__progress">
+              <div
+                className="questions__progress-bar"
+                style={{ width: `${((currentIndex + 1) / amount) * 100}%` }}
+              />
+            </div>
+            <p className="text">
+              Score:
+              {' '}
+              {correct.length}
+            </p>
           </div>
+
           <Swiper
             ref={swiper}
             slidesPerView={1}
+            slidesPerGroup={1}
             onSlideChange={handleSwipe}
             allowSlideNext={questions[currentIndex].answer}
             initialSlide={currentIndex}
           >
             {questions.map((question) => (
               <SwiperSlide key={question.question}>
-                <p className="questions__category">
-                  Category:
-                  {' '}
-                  {question.category}
-                </p>
-                <p className="questions__text">
-                  {question.question}
-                </p>
+                <div className="questions__slide">
+                  <p className="questions__category text">
+                    Category:
+                    {' '}
+                    {question.category}
+                  </p>
+                  <p className="questions__text third-title">
+                    {question.question}
+                  </p>
+                </div>
               </SwiperSlide>
             ))}
           </Swiper>
 
-          {options && options.map((answer) => (
-            <label htmlFor={answer} key={answer}>
-              {answer}
-              <input
-                type="radio"
-                name="answer"
-                id={answer}
-                value={answer}
-                onChange={(event) => handleAnswer(event, currentIndex)}
-                className={`
-                  ${questions[currentIndex].correct_answer.includes(answer)
-                  ? 'questions__answer--correct'
-                  : 'questions__answer--incorrect'}
-                  question__answer
-                `}
-                checked={
-                  questions[currentIndex].answer === answer
-                }
-              />
-            </label>
-          ))}
-
-          <p className="questions__score">
-            Score
-            {' '}
-            {correct.length}
-          </p>
+          <div className="questions__answers">
+            {options.map((answer) => (
+              <label
+                htmlFor={answer}
+                key={answer}
+                className={getAnswerClass(answer, currentIndex)}
+              >
+                {answer}
+                <input
+                  type="radio"
+                  name="answer"
+                  id={answer}
+                  value={answer}
+                  onChange={(event) => handleAnswer(event, currentIndex)}
+                  checked={
+                    questions[currentIndex].answer === answer
+                  }
+                />
+              </label>
+            ))}
+          </div>
         </>
       )}
     </div>

@@ -9,7 +9,7 @@ import Settings from './pages/Settings/index';
 import Questions from './pages/Questions/index';
 import Result from './pages/Result/index';
 
-import './App.css';
+import './App.scss';
 
 function App() {
   return (

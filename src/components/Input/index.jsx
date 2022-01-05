@@ -2,6 +2,8 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 
+import './style.scss';
+
 import {
   setAmount,
 } from '../../redux/actions';

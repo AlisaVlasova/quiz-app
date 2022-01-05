@@ -1,0 +1,95 @@
+@import '../../assets/scss/vars';
+@import '../../assets/scss/extends';
+@import '../../assets/scss/mixins';
+
+.questions {
+  max-width: 100%;
+
+  &__score {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+    max-width: 600px;
+
+    margin: 0 auto $gap_m;
+  }
+
+  &__arrow {
+    @extend %h1;
+
+    font-size: 25px;
+
+    cursor: pointer;
+
+    @include hover(color, $accent_color);
+  }
+
+  &__progress {
+    @extend %neon_border;
+
+    position: relative;
+
+    width: 60%;
+    height: 16px;
+
+    border-radius: 2rem;
+
+    overflow: hidden;
+
+    &-bar {
+      position: absolute;
+      left: 1px;
+      top: 1px;
+      bottom: 0;
+
+      border-radius: 2rem;
+
+      background-color: $text_color;
+    }
+  }
+
+  &__slide {
+    margin: $gap_l auto;
+
+    width: 100%;
+    max-width: 600px;
+  }
+
+  &__category {
+    margin-bottom: $gap_m;
+  }
+
+  &__answers {
+    display: grid;
+
+    margin:  auto;
+
+    width: 100%;
+    max-width: 600px;
+
+    @media screen and (min-width: 420px) {
+      grid-template-columns: 1fr 1fr;
+      gap: $gap_m;
+    }
+  }
+
+  &__answer {
+    width: 100%;
+
+    transition: box-shadow 0.3s;
+
+    input {
+      display: none;
+    }
+
+    &--correct {
+      @include glow($success_color);
+    }
+
+    &--incorrect {
+      @include glow($error_color);
+    }
+  }
+}

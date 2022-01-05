@@ -12,6 +12,8 @@ import {
 } from '../../redux/actions';
 import { getCategory } from '../../api';
 
+import './style.scss';
+
 function Settings() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -67,60 +69,64 @@ function Settings() {
 
   if (loading) {
     return (
-      <p className="loader">Loading...</p>
+      <p className="loader primary-title">???</p>
     );
   }
 
   if (error) {
     return (
-      <p className="error">
-        Something Went Wrong!
-        <br />
-        Please, try again later
+      <p className="error primary-title">
+        Something Wrong!
       </p>
     );
   }
 
   return (
     <form onSubmit={handleSubmit} className="settings">
-      <p className="settings__label">
-        Select category:
-      </p>
-      <Select
-        options={categoryOptions}
-        label="Category"
-        defaultValue={category}
-      />
+      <h1 className="primary-title">
+        ???
+      </h1>
 
-      <p className="settings__label">
-        Select difficulty:
-      </p>
-      <Select
-        options={difficultyOptions}
-        label="Difficulty"
-        defaultValue={difficulty}
-      />
+      <div className="settings__container border-block">
+        <p className="settings__label third-title">
+          Select category:
+        </p>
+        <Select
+          options={categoryOptions}
+          label="Category"
+          defaultValue={category}
+        />
 
-      <p className="settings__label">
-        Select question type:
-      </p>
-      <Select
-        options={typeOptions}
-        label="Type"
-        defaultValue={type}
-      />
+        <p className="settings__label third-title">
+          Select difficulty:
+        </p>
+        <Select
+          options={difficultyOptions}
+          label="Difficulty"
+          defaultValue={difficulty}
+        />
 
-      <p className="settings__label">
-        Amount of questions:
-      </p>
-      <Input defaultValue={amount} />
+        <p className="settings__label third-title">
+          Select question type:
+        </p>
+        <Select
+          options={typeOptions}
+          label="Type"
+          defaultValue={type}
+        />
 
-      <button
-        className="settings__btn"
-        type="submit"
-      >
-        Go!
-      </button>
+        <p className="settings__label third-title">
+          Amount of questions:
+        </p>
+        <Input defaultValue={amount} />
+
+        <button
+          className="settings__btn btn"
+          type="submit"
+        >
+          start!
+        </button>
+      </div>
     </form>
   );
 }
