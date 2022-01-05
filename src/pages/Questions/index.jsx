@@ -82,6 +82,7 @@ function Questions() {
       setAnswers(decodedQuestionsData, currentIndex);
     } catch (err) {
       setError(err);
+      // eslint-disable-next-line no-console
       console.log(err);
     } finally {
       setLoading(false);

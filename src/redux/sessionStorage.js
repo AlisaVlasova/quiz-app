@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 export const loadState = () => {
   try {
     const serializedState = sessionStorage.getItem('state');
