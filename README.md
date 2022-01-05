@@ -2,6 +2,7 @@
 
 ## Demo
 
+Tried to deploy on gh-pages 
 
 ## Tech Stack
 
