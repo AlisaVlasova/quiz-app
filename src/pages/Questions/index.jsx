@@ -137,6 +137,10 @@ function Questions() {
       setQuestionsData({
         amount, category, difficulty, type,
       });
+    } else if (!questions.length) {
+      setQuestionsData({
+        amount, category, difficulty, type,
+      });
     } else {
       setAnswers(questions, currentIndex);
     }
@@ -150,9 +154,18 @@ function Questions() {
 
   if (error) {
     return (
-      <p className="error primary-title">
-        Something Wrong!
-      </p>
+      <div className="error">
+        <p className="primary-title">
+          Something Wrong!
+        </p>
+        <button
+          className="btn"
+          type="button"
+          onClick={() => navigate('/')}
+        >
+          Back
+        </button>
+      </div>
     );
   }
 

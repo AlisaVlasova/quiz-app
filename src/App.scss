@@ -111,11 +111,17 @@
     left: 50%;
     top: 50%;
 
-    font-size: 60px;
+    
 
     transform: translate(-50%, -50%);
 
     animation: flicker 1.5s infinite alternate;
+
+    .primary-title {
+      font-size: 60px;
+
+      margin-bottom: $gap_m;
+    }
   }
 
   @keyframes flicker {
