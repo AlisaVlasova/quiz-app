@@ -1,9 +1,5 @@
 # Quiz
 
-## Demo
-
-Tried to deploy on gh-pages 
-
 ## Tech Stack
 
 - React + Hooks
@@ -11,6 +7,7 @@ Tried to deploy on gh-pages
 - React Router
 - Sass
 - Swiper
+- ESLint
 
 ## What Have I Done
 
@@ -47,7 +44,9 @@ Also there are:
 
 ## Problems
 
-In some cases api gives an empty array, so if you see an error message just go back to home page ang change some settings)
+- In some cases api gives an empty array, so if you see an error message just go back to home page ang change some settings)
+- Have some troubles with deployment. [https://alisavlasova.github.io/quiz-app/](https://alisavlasova.github.io/quiz-app/)
+  Getting an empty page with styles
 
 ## Available Scripts
 
